@@ -7,8 +7,8 @@ class PolylineUtils {
   PolylineRequestData _data;
   PolylineUtils(this._data);
 
-  Future<List<LatLng>> getCoordinates() async {
-    List<LatLng> _coordinates;
+  Future<DirectionData> getCoordinates() async {
+    DirectionData data = DirectionData();
 
     var qParam = {
       'mode': getMode(_data.mode),
@@ -33,14 +33,18 @@ class PolylineUtils {
 
     try {
       if (_response.statusCode == 200) {
-        _coordinates = decodeEncodedPolyline(
+        data.coordinates = decodeEncodedPolyline(
             _response.data['routes'][0]['overview_polyline']['points']);
       }
+      data.distanceText =
+          _response.data['routes'][0]['legs'][0]['distance']['text'];
+      data.distanceValue =
+          _response.data['routes'][0]['legs'][0]['distance']['value'];
     } catch (e) {
       print('error!!!!');
     }
 
-    return _coordinates;
+    return data;
   }
 
   List<LatLng> decodeEncodedPolyline(String encoded) {
@@ -85,4 +89,12 @@ class PolylineUtils {
         return null;
     }
   }
+}
+
+class DirectionData {
+  List<LatLng> coordinates;
+  String distanceText;
+  int distanceValue;
+
+  DirectionData({this.coordinates, this.distanceText, this.distanceValue});
 }

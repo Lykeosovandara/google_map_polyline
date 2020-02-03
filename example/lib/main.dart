@@ -48,32 +48,30 @@ class _MyAppState extends State<MyApp> {
   //Get polyline with Location (latitude and longitude)
   _getPolylinesWithLocation() async {
     _setLoadingMenu(true);
-    List<LatLng> _coordinates =
-        await _googleMapPolyline.getCoordinatesWithLocation(
-            origin: _originLocation,
-            destination: _destinationLocation,
-            mode: RouteMode.driving);
+    var d = await _googleMapPolyline.getCoordinatesWithLocation(
+        origin: _originLocation,
+        destination: _destinationLocation,
+        mode: RouteMode.driving);
 
     setState(() {
       _polylines.clear();
     });
-    _addPolyline(_coordinates);
+    _addPolyline(d.coordinates);
     _setLoadingMenu(false);
   }
 
   //Get polyline with Address
   _getPolylinesWithAddress() async {
     _setLoadingMenu(true);
-    List<LatLng> _coordinates =
-        await _googleMapPolyline.getPolylineCoordinatesWithAddress(
-            origin: '55 Kingston Ave, Brooklyn, NY 11213, USA',
-            destination: '8007 Cypress Ave, Glendale, NY 11385, USA',
-            mode: RouteMode.driving);
+    var d = await _googleMapPolyline.getPolylineCoordinatesWithAddress(
+        origin: '55 Kingston Ave, Brooklyn, NY 11213, USA',
+        destination: '8007 Cypress Ave, Glendale, NY 11385, USA',
+        mode: RouteMode.driving);
 
     setState(() {
       _polylines.clear();
     });
-    _addPolyline(_coordinates);
+    _addPolyline(d.coordinates);
     _setLoadingMenu(false);
   }
 

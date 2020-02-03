@@ -4,6 +4,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_map_polyline/src/polyline_request.dart';
 import 'package:google_map_polyline/src/polyline_utils.dart';
 
+import 'polyline_utils.dart';
+import 'polyline_utils.dart';
+
 /// Gives polyline coordinates to set polylines in Google Map.
 class GoogleMapPolyline {
   String apiKey;
@@ -14,7 +17,7 @@ class GoogleMapPolyline {
 
   /// Get coordinates using Location Coordinates
   /// Example : LatLng(40.677939, -73.941755)
-  Future<List<LatLng>> getCoordinatesWithLocation({
+  Future<DirectionData> getCoordinatesWithLocation({
     @required LatLng origin,
     @required LatLng destination,
     @required RouteMode mode,
@@ -33,7 +36,7 @@ class GoogleMapPolyline {
 
   /// Get coordinates using Location Coordinates
   /// Example : '55 Kingston Ave, Brooklyn, NY 11213, USA'
-  Future<List<LatLng>> getPolylineCoordinatesWithAddress({
+  Future<DirectionData> getPolylineCoordinatesWithAddress({
     @required String origin,
     @required String destination,
     @required RouteMode mode,
