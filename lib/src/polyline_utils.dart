@@ -43,6 +43,10 @@ class PolylineUtils {
       data.startAddress =
           _response.data['routes'][0]['legs'][0]['start_address'];
       data.endAddress = _response.data['routes'][0]['legs'][0]['end_address'];
+      data.durationValue =
+          _response.data['routes'][0]['legs'][0]['duration']['value'];
+      data.durationText =
+          _response.data['routes'][0]['legs'][0]['duration']['text'];
     } catch (e) {
       print('error!!!!');
     }
@@ -98,6 +102,8 @@ class DirectionData {
   List<LatLng> coordinates;
   String distanceText;
   int distanceValue;
+  String durationText;
+  int durationValue;
   String endAddress;
   String startAddress;
 
@@ -106,5 +112,7 @@ class DirectionData {
       this.distanceText,
       this.distanceValue,
       this.startAddress,
-      this.endAddress});
+      this.endAddress,
+      this.durationText,
+      this.durationValue});
 }

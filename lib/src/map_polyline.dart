@@ -5,7 +5,6 @@ import 'package:google_map_polyline/src/polyline_request.dart';
 import 'package:google_map_polyline/src/polyline_utils.dart';
 
 import 'polyline_utils.dart';
-import 'polyline_utils.dart';
 
 /// Gives polyline coordinates to set polylines in Google Map.
 class GoogleMapPolyline {
@@ -23,11 +22,12 @@ class GoogleMapPolyline {
     @required RouteMode mode,
   }) async {
     _data = new PolylineRequestData(
-        originLoc: origin,
-        destinationLoc: destination,
-        mode: mode,
-        locationText: false,
-        apiKey: apiKey);
+      originLoc: origin,
+      destinationLoc: destination,
+      mode: mode,
+      locationText: false,
+      apiKey: apiKey,
+    );
 
     _utils = new PolylineUtils(_data);
 
